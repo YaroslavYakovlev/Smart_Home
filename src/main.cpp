@@ -81,9 +81,10 @@ int main(){
   }
 
   if((light == "on") && ((timeHour >= 16) && (timeHour <=20))){
-    for(int i = 4; i > 0; i--){
-      colorTemperature -= (1300 / 4);
-    }
+    state |= THE_LIGHT_INSIDE;
+    std::cout << "The lighting in the house is turned on" << std::endl;
+    colorTemperature -= (1300 / 4);
+    std::cout << "Lamp temperature - " << colorTemperature << std::endl;
   }
 
   if(timeHour == 0){
