@@ -22,24 +22,30 @@ int main(){
 
   int temperatureInside;
   int temperatureOuside; 
-  int timeHour;
+  int timeHour = 0;
   int state = 0;
+  int colorTemperature = 5000;
 
+  std::cout << "Enter the data: outside temperature, inside temperature, time, movement (yes/no), light (on/off)" << std::endl;
   std::cin >> data;
   std::cout << "data " << data << std::endl;
   parsData << data;
 
   std::cout << "parsData " << parsData.str() << std::endl;
+  // parsData >> temperatureOuside >> temperatureInside >> timeHour >> movements >> light;
   // parsData >> temperatureOuside >> temperatureInside;
   // parsData >> timeHour;
-  parsData >> movements;
+  // parsData >> movements;
+  parsData >> light;
 
 
 
     // std::cout << "temperatureOuside " << temperatureOuside << std::endl;
     // std::cout << "temperatureInside " << temperatureInside << std::endl;
     // std::cout << "timeHour " << timeHour << std::endl;
-    std::cout << "movements " << movements.c_str() << std::endl;
+    // std::cout << "movements " << movements.c_str() << std::endl;
+    std::cout << "light " << light.c_str() << std::endl;
+
 
 
 
@@ -66,7 +72,7 @@ int main(){
     std::cout << "The air conditioner is turned off" << std::endl;
   }
 
-  if(((timeHour > 15) && (timeHour < 25) || (timeHour >= 0) && (timeHour < 5))
+  if(((timeHour >= 16) && (timeHour <= 24) || (timeHour >= 0) && (timeHour < 5))
       && (movements == "yes")){
     state |= LIGHT_FROM_OUTSIDE;
     std::cout << "The light outside is on" << std::endl;
@@ -74,6 +80,15 @@ int main(){
     state &= ~LIGHT_FROM_OUTSIDE;
   }
 
+  if((light == "on") && ((timeHour >= 16) && (timeHour <=20))){
+    for(int i = 4; i > 0; i--){
+      colorTemperature -= (1300 / 4);
+    }
+  }
+
+  if(timeHour == 0){
+    colorTemperature = 5000;
+  }
 
 
 
